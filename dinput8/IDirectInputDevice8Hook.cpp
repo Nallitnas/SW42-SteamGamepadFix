@@ -7,11 +7,12 @@ static bool mLastSpaceKeyState = false;
 static GUID GUID_GamepadXboxOneWired = {
 	0x02FF045E, 0x0000, 0x0000,{ 0x00, 0x00, 0x50, 0x49, 0x44, 0x56, 0x49, 0x44 }
 };
-
+static GUID GUID_GamepadXboxOneWireless = {
+	0xEC5E34A0, 0x1871, 0x11EB,{ 0x80, 0x01, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00 }
+};
 static GUID GUID_GamepadXbox360WirelessSteam = {
 	0x11FF28DE, 0x28DE, 0x0001,{ 0x00, 0x00, 0x50, 0x49, 0x44, 0x56, 0x49, 0x44 }
 };
-
 static GUID GUID_GamepadDragonRiseTwinShock = {
 	0x9C3F48C0, 0xAF01, 0x11E6,{ 0x80, 0x01, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00 }
 };
@@ -166,7 +167,7 @@ HRESULT STDMETHODCALLTYPE IDirectInputDevice8Hook::GetDeviceState(DWORD p0, LPVO
 		}
 
 		// Fix Xbox360 / XBoxOne controls (Steam In-Home Streaming and NVidia GameStream both simulate different versions of this controller!)
-		else if (IsEqualGUID(m_GUID, GUID_GamepadXbox360WirelessSteam) || IsEqualGUID(m_GUID, GUID_GamepadNVidiaShieldGameStream) ||IsEqualGUID(m_GUID, GUID_GamepadXboxOneWired))
+		else if (IsEqualGUID(m_GUID, GUID_GamepadXbox360WirelessSteam) || IsEqualGUID(m_GUID, GUID_GamepadNVidiaShieldGameStream) ||IsEqualGUID(m_GUID, GUID_GamepadXboxOneWired) ||IsEqualGUID(m_GUID, GUID_GamepadXboxOneWireless))
 		{
 			// Swap A and X button presses to match the expected button number
 			state->rgbButtons[0] = state->rgbButtons[0] ^ state->rgbButtons[2];
